@@ -1,4 +1,6 @@
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 
 public class Main {
@@ -16,7 +18,26 @@ public class Main {
         ArrayList<Integer> wylosowaneLiczby = wylosujLiczbyBezPowtorzenDoListy(30);
         wypisz(wylosowaneLiczby);
 
+        HashSet<Integer> wylosowaneLiczbyZbior = wylosujLiczbyBezPowtorzenDoZbioru();
+
     }
+
+
+    private static HashSet<Integer>wylosujLiczbyBezPowtorzenDoZbioru(int ileLiczb){
+        HashSet<Integer> liczbyWylosowane = new HashSet<>()
+        //elementy w zbiorze sie nie powtarzaja
+        //elementy sa nie indeksowane, nieuporzadkowane
+        Random random = new Random();
+        for (int i = 0; i < ileLiczb; i++) {
+            int liczba = random.nextInt(20);
+            liczbyWylosowane.add(liczba);
+
+        }
+        return liczbyWylosowane;
+    }
+
+
+
     private static ArrayList<Integer> wylosujLiczbyBezPowtorzenDoListy(int ileLiczb){
         ArrayList<Integer> liczbyWylosowane = new ArrayList<>();
         //nie musi być znany rozmiar listy
@@ -41,7 +62,12 @@ public class Main {
 
         }
     }
-
+private static void wypisz(HashSet<Integer> zbior){
+    System.out.println("Wypisane liczby ze zbioru");
+    for (int liczba:zbior) {
+        System.out.println(liczba+", ");
+    }
+}
     private static void wypisz(ArrayList<Integer> lista){
         System.out.println("Wypisana lista:");
         for (int i = 0; i < lista.size(); i++) {
